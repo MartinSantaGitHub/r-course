@@ -1,7 +1,8 @@
-#Plot Multivariante
+# Plot Multivariante
+#install.packages("GGally")
 library(ggplot2)
-install.packages("GGally")
 library(GGally)
+
 bike <- read.csv("../data/tema7/daily-bike-rentals.csv")
 head(bike)
 
@@ -18,28 +19,24 @@ bike$weekday <- factor(bike$weekday,
                        labels = c("D", "L", "M", "X", "J", "V", "S"))
 
 hist(bike$windspeed)
-bike$windspeed.fac <- cut(bike$windspeed, breaks = 3,
-                          labels = c("Poco", "Medio", "Elevado"))
 
+bike$windspeed.fac <- cut(bike$windspeed,breaks=3,labels=c("Poco","Medio","Elevado"))
 head(bike)
 
-
-
-ggplot(bike, aes(x=temp, y = cnt))+
-  geom_point(size=3, aes(color=windspeed.fac))+
+ggplot(bike,aes(x=temp,y=cnt))+
+  geom_point(size=3,aes(color=windspeed.fac))+
   theme(legend.position = "bottom")+
-  geom_smooth(method="lm", se=F, col="red")+
-  facet_grid(weekday ~ season)
+  geom_smooth(method="lm",se=F,col="red")+
+  facet_grid(weekday~season)
 
-
-
-auto <- read.csv("../data/tema7/auto-mpg.csv", stringsAsFactors = F)
+auto <- read.csv("../data/tema7/auto-mpg.csv",stringsAsFactors = F)
 auto$cylinders <- factor(auto$cylinders,
                          labels = c("3C", "4C", "5C", "6C", "8C"))
 
 #postscript(file="multivariant.ps")
-#pdf(file="multivariant.pdf")
+pdf(file="multivariant.pdf")
 png(file="multivariant.png", width = 3000, height = 3000, res = 72)
+
 ggpairs(auto[,2:7], 
         aes(colour = cylinders, 
             alpha = 0.4),
@@ -47,5 +44,5 @@ ggpairs(auto[,2:7],
         upper = list(continuous = "density"),
         lower = list(combo = "denstrip"))+
   theme(plot.title = element_text(hjust = 0.5))  
-dev.off()
 
+dev.off()

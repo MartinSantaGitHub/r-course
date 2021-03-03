@@ -1,12 +1,14 @@
-#Correlation Matrix
+# Correlation Matrix
 library(ggplot2)
 library(corrplot)
+library(reshape2)
+
 mtcars <- read.csv("../data/tema7/mtcars.csv")
 head(mtcars)
-mtcars$X = NULL
-mtcars.cor <- cor(mtcars, method = "pearson")
+mtcars$X=NULL
+mtcars.cor <- cor(mtcars,method="pearson")
 
-round(mtcars.cor, digits = 2)
+round(mtcars.cor,digits = 2)
 corrplot(mtcars.cor)
 
 corrplot(mtcars.cor, method = "shade", 
@@ -15,6 +17,7 @@ corrplot(mtcars.cor, method = "shade",
 
 col <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", 
                           "#77AADD", "#4477AA"))
+
 corrplot(mtcars.cor, method = "square", 
          tl.col = "black",
          tl.srt = 45, col = col(200), 
@@ -24,9 +27,6 @@ corrplot(mtcars.cor, method = "square",
          diag = F,
          addshade = "all")
 
-
-
-library(reshape2)
 mtcars.melted <- melt(mtcars.cor)
 head(mtcars.cor)
 head(mtcars.melted)
@@ -34,8 +34,6 @@ head(mtcars.melted)
 ggplot(data = mtcars.melted, 
        aes(x=Var1, y=Var2,fill=value))+
   geom_tile()
-
-
 
 get_lower_triangle <- function(cormat){
   cormat[upper.tri(cormat)] <- NA
@@ -52,8 +50,6 @@ reorder_cormat <- function(cormat){
   hc <- hclust(dd)
   cormat <- cormat[hc$order, hc$order]
 }
-
-
 
 cormat <- reorder_cormat(mtcars.cor)
 cormat.ut <- get_upper_triangle(cormat)

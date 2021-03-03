@@ -6,7 +6,7 @@ library(ggmap)
 tartu.data <- read.csv("../data/tema7/tartu_housing.csv",sep=";")
 head(tartu.data)
 
-register_google(key = "AIzaSyAK4CRh1vZJqQSfoPTpBnjJAwdV03F3Dmg")
+register_google(key = "insert key here")
 
 tartu.map <- get_map(location="tartu",maptype = "satellite",zoom=12)
 ggmap(tartu.map,extent = "device") + 

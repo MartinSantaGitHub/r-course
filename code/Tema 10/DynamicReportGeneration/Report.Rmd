@@ -1,0 +1,35 @@
+---
+title: "Dynamic Report Generation"
+author: "Martin Santamaria"
+date: "10/3/2021"
+output:
+  #pdf_document: default
+  html_document: default
+params:
+  n: NA
+---
+
+```{r}
+auto <- read.csv("../../../data/tema10/auto-mpg.csv")
+str(auto)
+```
+
+```{r}
+plot(as.formula(paste("mpg~",params$n)),data = auto)
+```
+
+
+
+
+
+
+## Un ejemplo con Latex
+
+\[\int_0^\infty \frac{1}{x^2} dx\]
+
+```{r}
+x = rnorm(100)
+x
+```
+
+El promedio en estadística se define como \(\overline{x} = \displaystyle\sum_{i=1}^N \frac{x_i}{N}\) = `r mean(x)`

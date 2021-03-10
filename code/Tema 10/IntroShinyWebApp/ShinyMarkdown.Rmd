@@ -1,0 +1,28 @@
+---
+title: "ShinyMarkdown"
+author: "Martin Santamaria"
+date: "10/3/2021"
+output: html_document
+---
+
+# Esto es una web app de Shiny
+
+```{r, echo=FALSE}
+library(knitr)
+library(webshot)
+knitr::include_app("http://127.0.0.1:5843",height = 1000)
+
+appshot(app = "../IntroShinyWebApp/",file = "shiny.png",
+        vheight = 400)
+knitr::include_graphics("shiny.png")
+```
+
+# Mostrar código de los chunks
+
+```{r eval=TRUE}
+knitr::read_chunk("../IntroShinyWebApp/ui.R")
+```
+
+```{r ui, eval=F}
+
+```

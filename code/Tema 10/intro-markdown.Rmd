@@ -3,15 +3,19 @@ title: "Introducción a Markdown"
 author: "Martin Santamaria"
 date: "8/3/2021"
 output:
-  word_document: default
+  html_document: 
+    theme: cosmo
+    toc: yes # Agrega un índice dinámico
   pdf_document: default
-  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
 #tinytex::tlmgr_install("pdfcrop")
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+***
 
 ## R Markdown
 
